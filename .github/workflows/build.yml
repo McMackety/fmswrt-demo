@@ -23,7 +23,7 @@ jobs:
       - uses: awalsh128/cache-apt-pkgs-action@latest
         name: Install Dependencies
         with:
-          packages: build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev python3-setuptools rsync swig unzip zlib1g-dev file wget
+          packages: build-essential libexpat1-dev clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev python3-setuptools rsync swig unzip zlib1g-dev file wget
           version: 1.4.3
           execute_install_scripts: true
 
@@ -45,7 +45,7 @@ jobs:
       - name: Build
         working-directory: ./openwrt
         run: |
-          make -j$(nproc) V=s
+          make -i -j$(nproc) V=s
 
       # Upload Result
       - uses: actions/upload-artifact@v4
